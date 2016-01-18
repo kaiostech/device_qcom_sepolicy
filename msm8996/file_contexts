@@ -25,6 +25,11 @@
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 
 ###################################
+# Dev nodes
+#
+/dev/i2c-6                                                                      u:object_r:audio_device:s0
+
+###################################
 # Dev block nodes
 
 # common
