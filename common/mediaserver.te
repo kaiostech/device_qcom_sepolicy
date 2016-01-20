@@ -77,3 +77,6 @@ allow mediaserver surfaceflinger:unix_stream_socket rw_socket_perms;
 # DOLBY_START
 set_prop(mediaserver, dolby_prop)
 # DOLBY_END
+
+# Rule for RILD to talk to peripheral manager
+use_per_mgr(mediaserver);
