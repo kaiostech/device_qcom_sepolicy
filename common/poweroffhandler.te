@@ -40,6 +40,11 @@ allow poweroffhandler oemfs:file r_file_perms;
 allow poweroffhandler audio_device:dir r_dir_perms;
 allow poweroffhandler audio_device:chr_file rw_file_perms;
 
+# For regionalization
+allow poweroffhandler persist_file:dir r_dir_perms;
+allow poweroffhandler regionalization_file:dir r_dir_perms;
+allow poweroffhandler regionalization_file:file r_file_perms;
+
 allow poweroffhandler {surfaceflinger_service mediaserver_service}:service_manager find;
 
 binder_call(poweroffhandler, mediaserver);
