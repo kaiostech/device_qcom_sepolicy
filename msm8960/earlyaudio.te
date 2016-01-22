@@ -47,3 +47,6 @@ allow earlyaudio mediaserver_service:service_manager find;
 allow earlyaudio storage_file:dir r_dir_perms;
 allow earlyaudio fuse:dir r_dir_perms;
 allow earlyaudio fuse:file r_file_perms;
+allow earlyaudio mnt_media_rw_file:dir r_dir_perms;
+allow earlyaudio vfat:dir r_dir_perms;
+allow earlyaudio vfat:file r_file_perms;
