@@ -32,3 +32,5 @@ set_prop(qtimusic_app, audio_prop)
 allow qtimusic_app earlyaudio_data_file:dir rw_dir_perms;
 allow qtimusic_app earlyaudio_data_file:file create_file_perms;
 binder_call(qtimusic_app, mediaserver)
+allow qtimusic_app qtimusic_app_data_file:dir create_dir_perms;
+allow qtimusic_app qtimusic_app_data_file:file create_file_perms;
