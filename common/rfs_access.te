@@ -59,3 +59,4 @@ allow rfs_access self:capability {
 #Prevent other domains from accessing RFS data files.
 neverallow { domain -rfs_access -kernel -recovery -init userdebug_or_eng(`-su') -qti_init_shell } rfs_file:dir create_dir_perms;
 neverallow { domain -rfs_access -kernel -recovery -init userdebug_or_eng(`-su') -qti_init_shell } rfs_file:file create_file_perms;
+allow rfs_access log_device:chr_file { write open };

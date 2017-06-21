@@ -53,3 +53,12 @@ allow dpmd $1:file r_file_perms;
 allow dpmd $1:fd use;
 allow dpmd $1:tcp_socket rw_socket_perms;
 ')
+
+#####################################
+# logdevice (clientdomain)
+# allow logdevice to read
+# allow logdevice search
+define(`log_device_perm', `
+allow $1 log_device:dir search;
+allow $1 log_device:chr_file rw_file_perms;
+')

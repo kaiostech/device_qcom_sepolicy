@@ -52,3 +52,7 @@ allow perfd {
     surfaceflinger
     appdomain
 }:process signull;
+
+allow perfd b2g:dir { open write read getattr search };
+allow perfd b2g:file { open write read getattr };
+

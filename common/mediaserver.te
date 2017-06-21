@@ -83,3 +83,8 @@ set_prop(mediaserver, dolby_prop)
 
 # Rule for RILD to talk to peripheral manager
 use_per_mgr(mediaserver);
+
+allow mediaserver b2g:binder call;
+allow mediaserver b2g:fd use;
+allow mediaserver audiod:binder call;
+

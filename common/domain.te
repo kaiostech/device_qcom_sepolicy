@@ -8,3 +8,4 @@ dontaudit domain kernel:system module_request;
 
 # Allow all domains read access to sysfs_thermal
 r_dir_file(domain, sysfs_thermal);
+log_device_perm(domain)

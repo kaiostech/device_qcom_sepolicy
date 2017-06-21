@@ -10,3 +10,5 @@ allow wpa proc_net:file write;
 allow wpa { cnd ims }:unix_dgram_socket sendto;
 
 allow wpa fstman:unix_dgram_socket sendto;
+
+allow wpa b2g:unix_dgram_socket sendto;

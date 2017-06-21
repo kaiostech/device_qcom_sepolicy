@@ -7,3 +7,7 @@ userdebug_or_eng(`
 
 # Access firmware_file
 r_dir_file(kernel, firmware_file)
+
+allow kernel b2g:fd use;
+allow kernel system_data_file:file { open read write } ;
+

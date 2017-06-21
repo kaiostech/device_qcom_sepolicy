@@ -87,6 +87,7 @@ allow qti_init_shell {
 }:property_service set;
 
 allow qti_init_shell efs_boot_dev:blk_file r_file_perms;
+allow qti_init_shell swap_block_device:blk_file { write read open getattr };
 
 # For hci_comm_init
 allow qti_init_shell { serial_device userdebug_or_eng(`qdss_device') }:chr_file rw_file_perms;
@@ -151,3 +152,7 @@ allow qti_init_shell cgroup:dir add_name;
 
 # To allow copy for mbn files
 r_dir_file(qti_init_shell, firmware_file)
+
+allow qti_init_shell block_device:dir search;
+allow qti_init_shell self:capability sys_admin;
+allow qti_init_shell ctl_default_prop:property_service set;

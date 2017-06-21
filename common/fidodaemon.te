@@ -25,3 +25,5 @@ allow fidodaemon tee_device:chr_file rw_file_perms;
 
 #Allow access to firmware
 r_dir_file(fidodaemon, firmware_file)
+
+allow fidodaemon log_device:chr_file write;

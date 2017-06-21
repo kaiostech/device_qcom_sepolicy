@@ -19,3 +19,64 @@ allow init tmpfs:lnk_file create_file_perms;
 #allow it for most domain. Do not honor LD_PRELOAD
 #for lmkd
 allow init { domain -lmkd }:process noatsecure;
+
+#extras
+allow init socket_device:sock_file { create setattr unlink };
+allow init system_file:file execute_no_trans;
+allow init b2g:process { transition };
+
+allow init log_device:chr_file write;
+#allow init system_data_file:dir mounton;
+#allow init system_file:dir mounton;
+
+allow init alarm_device:chr_file write;
+allow init location_data_file:fifo_file write;
+allow init location_socket:sock_file write;
+allow init per_mgr:binder { transfer call };
+allow init rild:unix_stream_socket connectto;
+allow init rild_socket:sock_file write;
+allow init self:capability2 block_suspend;
+
+allow init socket_device:lnk_file unlink;
+
+allow init input_device:chr_file { write ioctl };
+allow init netd:unix_stream_socket connectto;
+allow init netd_socket:sock_file write;
+allow init netmgrd:unix_stream_socket connectto;
+allow init netmgrd_socket:sock_file write;
+allow init self:netlink_kobject_uevent_socket read;
+allow init self:netlink_route_socket read;
+allow init self:process execmem;
+allow init system_data_file:file { rename append };
+allow init vfat:file read;
+allow init system_data_file:file append;
+
+
+allow init log_device:chr_file getattr;
+allow init wpa:unix_dgram_socket sendto;
+allow init wpa_socket:sock_file write;
+
+allow init devpts:chr_file { open write read getattr ioctl };
+
+allow init dnsproxyd_socket:sock_file write;
+allow init gpu_device:chr_file { ioctl write read open };
+allow init graphics_device:chr_file write;
+allow init self:netlink_kobject_uevent_socket create;
+#allow init self:process ptrace;
+allow init servicemanager:binder { transfer call };
+allow init system_data_file:file lock;
+
+
+# Need to add
+allow init b2g:unix_stream_socket connectto;
+allow init bluetooth_data_file:file { rename append };
+allow init property_socket:sock_file write;
+allow init smd_device:chr_file { write ioctl };
+
+#TODO: why need this need to revisit
+allow init system_data_file:dir mounton;
+allow init system_file:dir mounton;
+allow init system_file:file {read open write };
+
+allow init firmware_file:dir mounton;
+
