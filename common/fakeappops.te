@@ -40,3 +40,4 @@ allow fakeappops system_server_service:service_manager add;
 
 # other domains that interact with fakeappops domain
 allow mediaserver fakeappops:binder { transfer call };
+allow fakeappops system_file:file { open read write entrypoint };

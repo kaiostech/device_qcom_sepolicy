@@ -259,3 +259,8 @@ allow b2g time_data_file:file { open write read getattr };
 allow b2g nfc_data_file:dir { open write read getattr search };
 allow b2g fm_radio_device:chr_file { open write read getattr ioctl };
 allow b2g fm_prop:property_service { set };
+allow b2g usbmsc_data_file:dir { read getattr open };
+allow b2g usbmsc_data_file:file { read getattr open };
+allow b2g self:tcp_socket accept;
+allow b2g system_file:file {open write read getattr entrypoint execute_no_trans };
+

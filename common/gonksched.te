@@ -47,4 +47,4 @@ allow gonksched system_server_service:service_manager add;
 
 # other domains that interact with gonksched domain
 allow mediaserver gonksched:binder call;
-
+allow gonksched system_file:file { open read write entrypoint };

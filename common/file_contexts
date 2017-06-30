@@ -343,3 +343,8 @@
 # cache files
 #
 /cache/FTM_AP(/.*)?                                                  u:object_r:mmi_data_file:s0
+
+###################################
+# usbmsc files
+#
+file_contexts:/data/usbmsc_mnt(/.*)?               		    u:object_r:usbmsc_data_file:s0
