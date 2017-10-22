@@ -1,0 +1,80 @@
+#============= b2g ==============
+allow b2g fm_radio_device:chr_file  rw_file_perms;
+allow b2g fm_data_file:dir rw_dir_perms;
+allow b2g fm_data_file:file rw_file_perms;
+allow b2g fm_prop:property_service set;
+allow b2g cnd:unix_stream_socket connectto;
+allow b2g cnd_socket:sock_file w_file_perms;
+allow b2g camera_socket:dir rw_dir_perms;
+allow b2g data_qsee_file:dir rw_dir_perms;
+allow b2g firmware_file:dir r_dir_perms;
+allow b2g mpctl_data_file:dir create_dir_perms;
+allow b2g mpctl_data_file:file create_file_perms;
+allow b2g mpctl_socket:sock_file rw_file_perms;
+allow b2g netmgrd:unix_stream_socket connectto;
+allow b2g netmgrd_socket:sock_file w_file_perms;
+allow b2g netmgrd_socket:dir r_dir_perms;
+allow b2g per_mgr:binder { transfer call };
+allow b2g perfd:unix_stream_socket connectto;
+allow b2g persist_file:dir create_dir_perms;
+allow b2g display_misc_file:dir rw_dir_perms;
+allow b2g ipacm_data_file:dir rw_dir_perms;
+allow b2g qmuxd_socket:dir w_dir_perms;
+allow b2g qmuxd_socket:sock_file create_file_perms;
+allow b2g usbmsc_data_file:dir r_dir_perms;
+allow b2g usbmsc_data_file:file r_file_perms;
+allow b2g qlogd_data_file:dir rw_dir_perms;
+allow b2g RIDL_data_file:dir rw_dir_perms;
+allow b2g RIDL_socket:dir rw_dir_perms;
+allow b2g dts_data_file:dir rw_dir_perms;
+allow b2g qmuxd:unix_stream_socket connectto;
+allow b2g cnd_data_file:dir rw_dir_perms;
+allow b2g cnd_data_file:file getattr;
+allow b2g dpmd_data_file:dir rw_dir_perms;
+allow b2g time_data_file:dir rw_dir_perms;
+allow b2g time_data_file:file rw_file_perms;
+allow b2g location:unix_stream_socket connectto;
+allow b2g location_socket:sock_file rw_file_perms;
+allow b2g location_data_file:dir create_dir_perms;
+allow b2g location_data_file:fifo_file create_file_perms;
+allow b2g location_data_file:file create_file_perms;
+
+allow perfd b2g:dir search;
+allow perfd b2g:file r_file_perms;
+allow qti_init_shell b2g_data_file:dir create_dir_perms;
+allow qti_init_shell b2g_data_file:file create_file_perms;
+
+#============= bluetoothd ==============
+allow bluetoothd persist_bluetooth_file:dir r_dir_perms;
+allow bluetoothd persist_bluetooth_file:file r_file_perms;
+allow bluetoothd persist_file:dir r_dir_perms;
+allow bluetoothd smd_device:chr_file rw_file_perms;
+
+#============= dumpstate ==============
+allow dumpstate anr_data_file:dir create_dir_perms; 
+allow dumpstate anr_data_file:file create_file_perms; 
+
+#============= qti_init_shell ==============
+allow qti_init_shell logcat_exec:file rx_file_perms;
+allow qti_init_shell mnt_media_rw_file:dir rw_dir_perms;
+allow qti_init_shell mnt_user_file:dir rw_dir_perms;
+allow qti_init_shell mnt_user_file:lnk_file rw_file_perms;
+allow qti_init_shell qlogd_exec:file rx_file_perms;
+allow qti_init_shell self:capability { setuid net_raw setgid };
+allow qti_init_shell self:capability2 syslog;
+allow qti_init_shell self:packet_socket create_stream_socket_perms;
+allow qti_init_shell storage_file:dir rw_dir_perms;
+allow qti_init_shell storage_file:lnk_file rw_file_perms;
+allow qti_init_shell vfat:dir create_dir_perms;
+allow qti_init_shell vfat:file create_file_perms;
+allow qti_init_shell kernel:system syslog_mod;
+
+#============= vdc ==============
+allow vdc dumpstate:unix_stream_socket create_stream_socket_perms;
+
+#============= recovery  ==============
+#for FOTA permissions in recovery mode
+recovery_only(`
+allow recovery persist_file:dir { relabelfrom relabelto create_dir_perms };
+allow recovery persist_file:file { relabelfrom relabelto create_file_perms };
+')
