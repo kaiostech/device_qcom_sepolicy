@@ -38,7 +38,7 @@ binder_call(hal_perf_client, hal_perf_server)
 add_hwservice(hal_perf_server, hal_perf_hwservice)
 allow hal_perf_client hal_perf_hwservice:hwservice_manager find;
 
-allow hal_perf cgroup:file r_file_perms;
+allow hal_perf_default cgroup:file r_file_perms;
 allow hal_perf_default proc:file rw_file_perms;
 allow hal_perf device_latency:chr_file rw_file_perms;
 get_prop(hal_perf, freq_prop)
@@ -53,7 +53,6 @@ r_dir_file(hal_perf_default, appdomain);
 allow hal_perf {
     sysfs_devices_system_cpu
     sysfs_mpdecision
-    cpuctl_device
     sysfs_devfreq
     sysfs_mmc_host
     sysfs_scsi_host
@@ -71,7 +70,6 @@ allow hal_perf {
 allow hal_perf {
     sysfs_devices_system_cpu
     sysfs_mpdecision
-    cpuctl_device
     sysfs_kgsl
     sysfs_cpu_boost
     sysfs_msm_perf

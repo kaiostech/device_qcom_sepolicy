@@ -25,7 +25,7 @@
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-type qdma_app, domain;
+type qdma_app, domain, mlstrustedsubject;
 app_domain(qdma_app)
 net_domain(qdma_app)
 binder_use(qdma_app)
@@ -71,3 +71,6 @@ allow qdma_app system_app_data_file:file create_file_perms;
 
 # allow qdma_prop
 set_prop(qdma_app, vendor_qdma_prop);
+
+# allow cgroup access
+allow qdma_app cgroup:file rw_file_perms;

@@ -1,4 +1,4 @@
-# Copyright (c) 2016, The Linux Foundation. All rights reserved.
+# Copyright (c) 2018, The Linux Foundation. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are
@@ -25,9 +25,12 @@
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-# GAMED
+type qtidataservices_app, domain;
+app_domain(qtidataservices_app);
 
-type gamed, domain;
-type gamed_exec, exec_type, vendor_file_type, file_type;
+add_hwservice(qtidataservices_app, hal_cacert_hwservice)
+hwbinder_use(qtidataservices_app)
 
-init_daemon_domain(gamed)
+allow qtidataservices_app { app_api_service activity_service }:service_manager find;
+allow qtidataservices_app self:qipcrtr_socket create_socket_perms_no_ioctl;
+allow qtidataservices_app radio_data_file:dir r_dir_perms;
