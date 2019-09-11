@@ -1,4 +1,3 @@
-typeattribute system_server system_writes_vendor_properties_violators;
 allow system_server self:capability sys_module;
 
 # allow system_server to communicate with cnd process over cnd_socket
@@ -51,7 +50,6 @@ type_transition system_server location_data_file:sock_file location_socket "alar
 #For wifistatemachine
 allow system_server kernel:key search;
 allow system_server wlan_device:chr_file rw_file_perms;
-set_prop(system_server, vendor_softap_prop)
 get_prop(system_server, vendor_softap_prop)
 
 #For ssr
@@ -76,9 +74,6 @@ hal_client_domain(system_server, hal_dataconnection_qti)
 
 # For WFD
 allow system_server graphics_device:dir r_dir_perms;
-userdebug_or_eng(`
-get_prop(system_server, wfd_debug_prop)
-')
 
 #Allow access to netmgrd socket
 #netmgr_socket(system_server);
@@ -103,11 +98,6 @@ allow system_server ctl_bootanim_prop:property_service set;
 
 # allow tethering to access dhcp leases
 r_dir_file(system_server, dhcp_data_file)
-
-# Allow system server to access fst,wigig system properties
-set_prop(system_server, fst_prop)
-get_prop(system_server, fst_prop)
-set_prop(system_server, wigig_prop)
 
 #allow access to fingerprintd data file
 allow system_server fingerprintd_data_file:file { r_file_perms unlink };
