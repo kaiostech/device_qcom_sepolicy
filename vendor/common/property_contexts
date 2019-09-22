@@ -23,6 +23,7 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 persist.vendor.service.bdroid.      u:object_r:vendor_bluetooth_prop:s0
+persist.vendor.bluetooth.           u:object_r:vendor_bluetooth_prop:s0
 persist.vendor.bt.soc.scram_freqs   u:object_r:vendor_bluetooth_prop:s0
 persist.vendor.bluetooth.a2dp.      u:object_r:vendor_bluetooth_prop:s0
 persist.vendor.qcom.bluetooth.      u:object_r:vendor_bluetooth_prop:s0
@@ -209,6 +210,9 @@ vendor.gpu.available_frequencies u:object_r:vendor_gpu_prop:s0
 
 persist.vendor.data.shs_ko_load u:object_r:vendor_data_ko_prop:s0
 persist.vendor.data.perf_ko_load u:object_r:vendor_data_ko_prop:s0
+
+#capabilityconfigstore (CCHAL)
+persist.vendor.cap_configstore_debug u:object_r:vendor_cap_configstore_dbg_prop:s0
 
 #hvdcp_opti
 persist.vendor.bms               u:object_r:hvdcp_opti_prop:s0
