@@ -93,3 +93,8 @@ genfscon sysfs /devices/soc/ca0c000.qcom,cci/ca0c000.qcom,cci:qcom,camera@0/vide
 
 # i2c device permissions
 genfscon sysfs /devices/soc/c176000.i2c/i2c-2/2-001d          u:object_r:sysfs_battery_supply:s0
+
+genfscon sysfs /devices/virtual/kgsl                          u:object_r:sysfs_kgsl:s0
+genfscon sysfs /class/kgsl                                    u:object_r:sysfs_kgsl:s0
+
+genfscon sysfs /devices/soc/780000.qcom,msm-core/uio          u:object_r:sysfs_uio_file:s0
