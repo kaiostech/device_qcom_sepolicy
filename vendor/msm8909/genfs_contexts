@@ -38,3 +38,8 @@ genfscon sysfs /devices/soc/78b8000.i2c/i2c-4/4-001c/power_supply/battery u:obje
 genfscon sysfs /devices/soc/78b8000.i2c/i2c-4/4-0070/power_supply/bms u:object_r:sysfs_battery_supply:s0
 genfscon sysfs /devices/soc/qpnp-vm-bms-9/power_supply/bms u:object_r:sysfs_battery_supply:s0
 genfscon sysfs /devices/soc/78d9000.usb/power_supply/usb u:object_r:sysfs_usb_supply:s0
+
+genfscon sysfs /devices/platform/soc/200f000.qcom,spmi/spmi-0/spmi0-01/200f000.qcom,spmi:qcom,pm8909@1:qcom,vibrator@c000/leds/vibrator u:object_r:sysfs_leds:s0
+genfscon sysfs /devices/platform/soc/200f000.qcom,spmi/spmi-0/spmi0-00/200f000.qcom,spmi:qcom,pm8909@0:qcom,charger/power_supply/battery  u:object_r:sysfs_battery_supply:s0
+genfscon sysfs /devices/platform/soc/200f000.qcom,spmi/spmi-0/spmi0-00/200f000.qcom,spmi:qcom,pm8909@0:qcom,vmbms/power_supply/bms  u:object_r:sysfs_battery_supply:s0
+genfscon sysfs /devices/platform/soc/200f000.qcom,spmi/spmi-0/spmi0-00/200f000.qcom,spmi:qcom,pm8909@0:qcom,charger/power_supply/usb  u:object_r:sysfs_usb_supply:s0
