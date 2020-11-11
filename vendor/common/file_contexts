@@ -258,6 +258,7 @@
 /(vendor|system/vendor)/bin/garden_app          u:object_r:location_exec:s0
 /(vendor|system/vendor)/bin/DR_AP_Service       u:object_r:location_exec:s0
 /(vendor|system/vendor)/bin/slim_daemon         u:object_r:location_exec:s0
+/(vendor|system/vendor)/bin/blpsvc              u:object_r:location_exec:s0
 /(vendor|system/vendor)/bin/xtra-daemon         u:object_r:location_exec:s0
 /(vendor|system/vendor)/bin/energy-awareness    u:object_r:energyawareness_exec:s0
 /(vendor|system/vendor)/bin/fidodaemon          u:object_r:fidodaemon_exec:s0
