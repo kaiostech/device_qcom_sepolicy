@@ -1,0 +1,161 @@
+#============= audioserver ==============
+#allow audioserver init:binder { call transfer };
+allow init audioserver:binder call;
+
+#============= flags_health_check ==============
+allow flags_health_check adsprpc_prop:file { getattr open };
+allow flags_health_check apexd_prop:file { getattr open };
+allow flags_health_check bg_boot_complete_prop:file { getattr open };
+allow flags_health_check bg_daemon_prop:file { getattr open };
+allow flags_health_check bluetooth_a2dp_offload_prop:file { getattr open };
+allow flags_health_check bluetooth_audio_hal_prop:file { open getattr };
+allow flags_health_check bluetooth_prop:file getattr;
+
+
+#============= hal_graphics_composer_default ==============
+allow hal_graphics_composer_default sysfs:file r_file_perms;
+#allow hal_graphics_composer_default init:binder { call transfer };
+
+#============= hal_light_default ==============
+allow hal_light_default sysfs:file { open read write };
+
+#============= hwservicemanager ==============
+#allow hwservicemanager init:binder transfer;
+
+#============= mediaserver ==============
+#allow mediaserver init:binder transfer;
+
+#============= rild ==============
+#allow rild init:binder call;
+
+#============= system_suspend ==============
+#allow system_suspend init:binder transfer;
+
+#============= cameraserver ==============
+get_prop(cameraserver, vendor_audio_prop);
+allow cameraserver vendor_audio_prop:file r_file_perms;
+allow cameraserver init:binder transfer;
+
+#============= fsck ==============
+allow fsck block_device:blk_file { read write };
+
+#============= hal_camera_default ==============
+allow hal_camera_default sysfs:file r_file_perms;
+
+#============= hal_allocator_default ==============
+#allow hal_allocator_default default_android_service:service_manager find;
+
+#============= hal_perf_default ==============
+allow hal_perf_default init:unix_stream_socket connectto;
+allow hal_perf_default hal_display_config_hwservice:hwservice_manager find;
+allow hal_perf_default hal_graphics_composer_default:binder call;
+#allow hal_perf_default property_socket:sock_file w_file_perms;
+#allow hal_perf_default vendor_default_prop:property_service set;
+
+#============= hal_wifi_default ==============
+#allow hal_wifi_default powerctl_prop:file rw_file_perms;
+allow hal_wifi_default proc_net:file rw_file_perms;
+get_prop(hal_wifi_default, powerctl_prop);
+
+#============= init ==============
+#binder_call(init, hwservicemanager)
+#binder_call(hwservicemanager, init)
+allow init hwservicemanager:binder { call transfer };
+#binder_call(init, rild)
+#binder_call(rild, init)
+allow init rild:binder { call transfer };
+allow init audioserver:binder call;
+allow init oemfs:dir mounton;
+allow init proc:file write;
+allow init rild:binder call;
+allow init system_file:file x_file_perms;
+allow init vendor_toolbox_exec:file x_file_perms;
+allow init vendor_file:file x_file_perms;
+allow init nativetest_data_file:dir { getattr open read setattr };
+allow init nativetest_data_file:file r_file_perms;
+
+#============= mediametrics ==============
+allow mediametrics vendor_audio_prop:file r_file_perms;
+get_prop(mediametrics, vendor_audio_prop);
+
+#============= netmgrd ==============
+#allow netmgrd vendor_default_prop:property_service set;
+
+#============= qti_init_shell ==============
+allow qti_init_shell configfs:dir create_dir_perms;
+allow qti_init_shell configfs:file create_file_perms;
+#allow qti_init_shell self:capability { dac_override kill };
+allow qti_init_shell self:capability kill;
+#allow qti_init_shell vendor_file:file entrypoint;
+#allow qti_init_shell shell_exec:file r_file_perms;
+#allow qti_init_shell toolbox_exec:file r_file_perms;
+#allow qti_init_shell shell_exec:file rx_file_perms;
+#allow qti_init_shell toolbox_exec:file rx_file_perms;
+allow qti_init_shell sysfs_net:file w_file_perms;
+#allow qti_init_shell default_prop:file { getattr open read };
+
+#============= storaged ==============
+#allow storaged init:binder call;
+
+#============= vendor_init ==============
+set_prop(vendor_init, vendor_sys_video_prop)
+allow vendor_init default_prop:property_service set;
+allow vendor_init fm_prop:property_service set;
+allow vendor_init ipa_dev:file create_file_perms;
+allow vendor_init proc_cmdline:file r_file_perms;
+allow vendor_init system_data_file:dir create_dir_perms;
+allow vendor_init tombstone_data_file:dir create_dir_perms;
+allow vendor_init traced_enabled_prop:property_service set;
+
+#============= vm_bms ==============
+#allow vm_bms default_prop:file { getattr open read };
+
+#============= wcnss_service ==============
+#allow wcnss_service system_prop:file r_file_perms;
+#allow wcnss_service serialno_prop:file r_file_perms;
+#allow wcnss_service wifi_data_file:dir r_dir_perms;
+allow wcnss_service property_socket:sock_file write;
+allow wcnss_service init:unix_stream_socket connectto;
+#allow wcnss_service system_prop:file { getattr open read };
+#allow wcnss_service wifi_data_file:dir search;
+#allow wcnss_service vendor_default_prop:property_service set;
+#allow wcnss_service serialno_prop:file read;
+
+#============= lmkd ==============
+allow lmkd proc_vmstat:file r_file_perms;
+
+#============= hal_audio_default ==============
+allow hal_audio_default sysfs:dir r_dir_perms;
+
+#============= toolbox ==============
+allow toolbox vendor_time_data_file:dir r_dir_perms;
+allow toolbox file_contexts_file:file r_file_perms;
+allow toolbox shell_data_file:dir getattr;
+allow toolbox system_data_file:dir create;
+allow toolbox system_data_file:file create;
+allow toolbox vendor_time_data_file:dir r_dir_perms;
+
+#============= kernel ==============
+allow kernel self:capability kill;
+
+#============= shell ==============
+allow shell kernel:system syslog_read;
+
+#============= thermal-engine ==============
+allow thermal-engine self:capability kill;
+allow thermal-engine sysfs:dir r_dir_perms;
+allow thermal-engine sysfs:file r_file_perms;
+
+#============= tee ==============
+allow tee unlabeled:dir r_dir_perms;
+
+#============= hwservicemanager ==============
+binder_call(hwservicemanager, lmkd)
+#allow hwservicemanager init:binder { call transfer };
+
+#============= vendor_per_mgr ==============
+allow vendor_per_mgr self:capability { net_raw net_bind_service };
+
+#============= hbtp ==============
+allow hbtp self:capability sys_nice;
+allow hbtp sysfs:file r_file_perms;
