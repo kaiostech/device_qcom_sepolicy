@@ -179,7 +179,9 @@
 /(vendor|system/vendor)/bin/init\.qti\.fm\.sh               u:object_r:qti_init_shell_exec:s0
 /(vendor|system/vendor)/bin/init\.qcom\.sdio\.sh            u:object_r:qti_init_shell_exec:s0
 /(vendor|system/vendor)/bin/init\.qcom\.wifi\.sh            u:object_r:qti_init_shell_exec:s0
+/vendor/bin/init\.qcom\.crashdata\.sh                       u:object_r:init-qcom-crashdata-sh_exec:s0
 /(vendor|system/vendor)/bin/init\.qti\.ims\.sh              u:object_r:init-qti-ims-sh_exec:s0
+/vendor/bin/init\.qti\.can\.sh                              u:object_r:qti_init_shell_exec:s0
 /(vendor|system/vendor)/bin/qca6234-service.sh              u:object_r:qti_init_shell_exec:s0
 /(vendor|system/vendor)/bin/mm-pp-daemon        u:object_r:mm-pp-daemon_exec:s0
 /(vendor|system/vendor)/bin/mm-pp-dpps          u:object_r:mm-pp-daemon_exec:s0
@@ -715,3 +717,7 @@
 
 #wifilearner daemon
 /(vendor|system/vendor)/bin/wifilearner    u:object_r:wifilearnersvc_exec:s0
+
+/system/bin/imsd                                u:object_r:qti_telephony_exec:s0
+/system/bin/QtiTelephonyService                 u:object_r:qti_telephony_exec:s0
+/vendor/bin/mutualex                            u:object_r:mutualex_exec:s0

@@ -1,4 +1,4 @@
-# Copyright (c) 2020, The Linux Foundation. All rights reserved.
+# Copyright (c) 2020 The Linux Foundation. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are
@@ -18,25 +18,39 @@
 # MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT
 # ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS
 # BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+# # CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
 # SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
 # BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
 # WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-get_prop(cnefwk, hwservicemanager_prop)
-get_prop(cnefwk, cnd_vendor_prop)
+type mutualex, domain;
+type mutualex_exec, exec_type, vendor_file_type, file_type;
+init_daemon_domain(mutualex)
 
-allow cnefwk hal_datafactory_hwservice:hwservice_manager find;
+allow mutualex mutualex:{
+	qipcrtr_socket
+	netlink_generic_socket
+} create_socket_perms_no_ioctl;
 
-binder_call(cnd,cnefwk)
-binder_call(cnefwk,cnd)
-hwbinder_use(cnefwk)
-binder_call(cnefwk, servicemanager)
+hal_client_domain(mutualex,hal_wifi_hostapd)
+hal_client_domain(mutualex,hal_wifi_supplicant)
 
-#diag
-userdebug_or_eng(`
-    diag_use(cnefwk)
-    r_dir_file(cnefwk, sysfs_diag)
-')
+# allow mutualex to access wpa_socket
+allow mutualex wifi_vendor_data_file:dir r_dir_perms;
+allow mutualex wifi_vendor_wpa_socket:sock_file write;
+
+#communicating with wpa supplicant for sending commands/listening to events
+unix_socket_send(mutualex, wpa, hal_wifi_supplicant)
+allow mutualex wpa_data_file:dir w_dir_perms;
+allow mutualex wpa_data_file:sock_file create_file_perms;
+
+#communicating with hostapd for sending commands/listening to events
+allow mutualex hostapd_data_file:dir rw_dir_perms;
+allow mutualex hostapd_data_file:sock_file create_file_perms;
+allow mutualex { hal_wifi_hostapd_default }:unix_dgram_socket sendto;
+
+wakelock_use(mutualex)
+
+allow mutualex self:socket create;

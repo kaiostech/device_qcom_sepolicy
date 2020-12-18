@@ -243,3 +243,7 @@ vendor.qvr                       u:object_r:qvr_prop:s0
 
 #Lazy hal property for BT
 ro.vendor.bt.enablelazyhal       u:object_r:bluetooth_prop:s0 exact bool
+
+persist.vendor.crash.cnt u:object_r:crash_cnt_prop:s0
+persist.vendor.crash.detect u:object_r:crash_detect_prop:s0
+persist.vendor.data.qmipriod_load u:object_r:vendor_data_qmipriod_prop:s0

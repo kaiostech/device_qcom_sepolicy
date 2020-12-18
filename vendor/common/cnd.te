@@ -86,6 +86,7 @@ allow cnd sysfs_data:file r_file_perms;
 
 add_hwservice(cnd, hal_latency_hwservice)
 add_hwservice(cnd, hal_datafactory_hwservice)
+add_hwservice(cnd, hal_slmadapter_hwservice)
 hwbinder_use(cnd)
 get_prop(cnd, hwservicemanager_prop)
 binder_call(cnd, dataservice_app)
