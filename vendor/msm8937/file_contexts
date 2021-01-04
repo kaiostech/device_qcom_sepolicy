@@ -32,6 +32,7 @@
 /dev/block/mmcblk0rpmb                                              u:object_r:rpmb_device:s0
 
 #Using soc instead of soc.0 for 3.18 kernel
+/dev/block/platform/soc/7824900.sdhci/by-name/studybak              u:object_r:modem_efs_partition_device:s0
 /dev/block/platform/soc/7824900.sdhci/by-name/fsg                   u:object_r:modem_efs_partition_device:s0
 /dev/block/platform/soc/7824900.sdhci/by-name/fsc                   u:object_r:modem_efs_partition_device:s0
 /dev/block/platform/soc/7824900.sdhci/by-name/modemst1              u:object_r:modem_efs_partition_device:s0
@@ -69,6 +70,9 @@
 
 # FBE
 /(vendor|system/vendor)/bin/init.qti.qseecomd.sh      u:object_r:init-qti-fbe-sh_exec:s0
+
+#tct_diag
+/(vendor|system/vendor)/bin/tct_diag                  u:object_r:tct_diag_exec:s0
 
 ##################################
 # A/B partitions.

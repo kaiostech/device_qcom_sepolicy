@@ -1,0 +1,42 @@
+type tct_diag, domain;
+type tct_diag_exec, exec_type, vendor_file_type, file_type;
+
+#FIXME:Android P cannot add this.
+init_daemon_domain(tct_diag)
+domain_auto_trans(tct_diag, vendor_audioftm_exec, vendor_audioftm)
+
+allow tct_diag diag_device:chr_file { open ioctl read write };
+allow tct_diag tct_diag:socket { create };
+
+# For shutdown cmd.
+allow tct_diag tct_diag:capability { sys_boot };
+
+# For check EMMC capability, turn on/off charging, etc
+allow tct_diag proc:file { read open getattr };
+allow tct_diag sysfs_battery_supply:dir { search };
+
+# Allow to reach block devices in /dev/block.
+allow tct_diag block_device:dir search;
+# Allow to read/write traceability block device.
+#allow tct_diag traceability_block_device:blk_file rw_file_perms;
+# For check FSG.
+allow tct_diag modem_efs_partition_device:blk_file r_file_perms;
+allow tct_diag sysfs:file r_file_perms;
+
+# Modified by chao.xu1 for defect 6602102 on 20180716 end
+#allow tct_diag tct_audioloop_prop:property_service set;
+#allow tct_diag tct_audioloop_prop:file { read open getattr };
+#allow tctd vendor_audioftm_exec:file { getattr execute read open execute_no_trans };
+allow tct_diag audio_device:chr_file rw_file_perms;
+allow tct_diag audio_device:dir search;
+
+#allow tct_diag vendor_file:file { getattr read execute open execute_no_trans };
+#allow tct_diag proc:file { getattr read open };
+#allow tct_diag self:capability dac_override;
+
+allow tct_diag rootfs:dir { read open };
+allow tct_diag rootfs:file { getattr };
+#allow tct_diag shell_exec:file { getattr read execute open execute_no_trans };
+allow tct_diag vendor_shell_exec:file { execute read open execute_no_trans getattr };
+allow tct_diag vendor_toolbox_exec:file { getattr execute read open execute_no_trans };
+
