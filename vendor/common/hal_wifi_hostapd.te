@@ -26,9 +26,11 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 # Allow hostapd to access it's data folder
-r_dir_file(hal_wifi_hostapd_default, wifi_vendor_data_file)
+allow hal_wifi_hostapd_default wifi_vendor_data_file:dir rw_dir_perms;
+allow hal_wifi_hostapd_default wifi_vendor_data_file:file create_file_perms;
 allow hal_wifi_hostapd_default hostapd_data_file:dir rw_dir_perms;
 allow hal_wifi_hostapd_default hostapd_data_file:file create_file_perms;
+allow hal_wifi_hostapd_default hostapd:unix_dgram_socket sendto;
 # Allow hostapd to connect to fstman using control socket
 allow hal_wifi_hostapd_default fstman:unix_dgram_socket sendto;
 # Allow hostapd to create control socket under its data folder
