@@ -35,6 +35,6 @@ allowxperm hal_wifi_supplicant self:socket ioctl msm_sock_ipc_ioctls;
 allow hal_wifi_supplicant_default proc_net:file write;
 
 # Permission for wpa socket which IMS use to communicate
-# # Allow wpa_supplicant to send back wifi information to cnd
-allow hal_wifi_supplicant_default { cnd ims }:unix_dgram_socket sendto;
+# # Allow wpa_supplicant to send back wifi information to cnd and location
+allow hal_wifi_supplicant_default { cnd ims location }:unix_dgram_socket sendto;
 
