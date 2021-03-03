@@ -31,3 +31,9 @@ type cnefwk_exec, exec_type, system_file_type, file_type;
 init_daemon_domain(cnefwk)
 
 allow cnefwk hwbinder_device:chr_file { read write };
+allow cnefwk dpmd_socket:sock_file write;
+
+allow cnefwk self:socket create_socket_perms;
+allowxperm cnefwk self:socket ioctl msm_sock_ipc_ioctls_system;
+unix_socket_connect(cnefwk,dpmd,dpmd);
+set_prop(cnefwk, persist_dpm_prop)
